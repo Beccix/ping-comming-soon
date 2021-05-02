@@ -16,17 +16,14 @@ function validate() {
 }
 
 function checksize() {
-    window.addEventListener("resize", function() {
         if (window.matchMedia("(max-width: 40rem)").matches) {
-          console.log("mobile")
+          return errorMessageMobile()
         } else {
-          console.log("desktop")
+          return errorMessageDesktop()
         }
-      }) 
 }
 
-function errorMessage() {
-    let errosMobile = document.querySelector(".invalid-text-mobile");
+function errorMessageDesktop() {
     let errosDesktop = document.querySelector(".invalid-text-desktop");
     let formControl = document.querySelector(".form-control");
     let formContainer = document.querySelector(".form-container");
@@ -39,6 +36,24 @@ function errorMessage() {
     } else {
         errosDesktop.classList.remove("error-show")
         errosDesktop.classList.add("error-hide")
+        formControl.classList.remove("invalid");
+        formContainer.classList.remove("invalid-form");
+    }
+}
+
+function errorMessageMobile() {
+    let errosMobile = document.querySelector(".invalid-text-mobile");
+    let formControl = document.querySelector(".form-control");
+    let formContainer = document.querySelector(".form-container");
+
+    if ((errosMobile .classList.contains("error-hide"))) {
+        errosMobile .classList.add("error-show")
+        errosMobile .classList.remove("error-hide")
+        formControl.classList.add("invalid");
+        formContainer.classList.add("invalid-form");
+    } else {
+        errosMobile .classList.remove("error-show")
+        errosMobile .classList.add("error-hide")
         formControl.classList.remove("invalid");
         formContainer.classList.remove("invalid-form");
     }
